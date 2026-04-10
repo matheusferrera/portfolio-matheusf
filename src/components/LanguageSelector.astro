@@ -1,0 +1,113 @@
+<div
+  class="language-selector relative flex h-7 items-center rounded-full bg-bg-navy-lightest p-1 shadow-inner"
+>
+  <div
+    class="lang-thumb absolute h-5 w-10 rounded-full bg-white shadow-md transition-all duration-300 ease-in-out"
+  >
+  </div>
+
+  <button
+    data-lang="pt"
+    class="lang-btn z-10 w-10 text-[10px] font-bold uppercase transition-colors duration-200"
+    >PT</button
+  >
+  <button
+    data-lang="en"
+    class="lang-btn z-10 w-10 text-[10px] font-bold uppercase transition-colors duration-200"
+    >EN</button
+  >
+  <button
+    data-lang="es"
+    class="lang-btn z-10 w-10 text-[10px] font-bold uppercase transition-colors duration-200"
+    >ES</button
+  >
+</div>
+
+<script>
+  function updateLangSelector(lang: string | null) {
+    if (!lang) return;
+    
+    // Select all instances of thumbs and buttons to keep them synced
+    const thumbs = document.querySelectorAll(".lang-thumb");
+    const buttons = document.querySelectorAll(".lang-btn");
+
+    let position = "0.25rem";
+    if (lang === "en") position = "calc(0.25rem + 2.5rem)";
+    if (lang === "es") position = "calc(0.25rem + 5rem)";
+
+    thumbs.forEach((thumb) => {
+      (thumb as HTMLElement).style.left = position;
+    });
+
+    buttons.forEach((btn) => {
+      const htmlBtn = btn as HTMLElement;
+      const isSelected = htmlBtn.getAttribute("data-lang") === lang;
+      
+      if (isSelected) {
+        // Dark text on white/teal thumb
+        htmlBtn.style.color = "var(--color-bg-navy)";
+        htmlBtn.style.fontWeight = "700";
+      } else {
+        htmlBtn.style.color = "var(--color-slate-custom)";
+        htmlBtn.style.fontWeight = "400";
+      }
+    });
+  }
+
+  function initLangSelector() {
+    const buttons = document.querySelectorAll(".lang-btn");
+    const savedLang = localStorage.getItem("language") || "pt";
+
+    updateLangSelector(savedLang);
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const lang = btn.getAttribute("data-lang");
+        if (lang) {
+          localStorage.setItem("language", lang);
+          // Just update UI for all instances
+          updateLangSelector(lang);
+
+          // Dispatch custom event for i18nManager and other instances
+          window.dispatchEvent(
+            new CustomEvent("language-changed", { detail: { lang } }),
+          );
+        }
+      });
+    });
+  }
+
+  // Listen for language changes from other instances or sources
+  window.addEventListener('language-changed', (e: any) => {
+    updateLangSelector(e.detail.lang);
+  });
+
+  // Run on first load
+  initLangSelector();
+
+  // Re-run if Astro view transition happens
+  document.addEventListener("astro:after-swap", initLangSelector);
+</script>
+
+<style>
+  .language-selector {
+    width: 7.75rem; /* 3 * 2.5rem + padding */
+    border: 1px solid rgba(148, 163, 184, 0.1);
+  }
+
+  :global(.light) .language-selector {
+    background-color: var(--color-bg-navy-light);
+    border-color: rgba(0, 0, 0, 0.05);
+  }
+
+  :global(.light) .lang-thumb {
+    background-color: var(--color-teal-custom);
+  }
+
+  .lang-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+  }
+</style>

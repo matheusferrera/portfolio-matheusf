@@ -1,0 +1,64 @@
+<button
+  class="theme-toggle group relative inline-flex h-7 w-14 flex-shrink-0 cursor-pointer items-center rounded-full bg-bg-navy-lightest transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-teal-custom focus:ring-offset-2 focus:ring-offset-bg-navy"
+  aria-label="Alternar tema"
+>
+  <span class="sr-only">Alternar tema</span>
+  
+  {/* Track Icons */}
+  <div class="absolute flex w-full justify-between px-1.5 text-slate-custom/50">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+  </div>
+
+  {/* Sliding Thumb */}
+  <span
+    class="pointer-events-none absolute z-10 flex h-5 w-5 transform items-center justify-center rounded-full bg-white shadow-lg transition duration-300 ease-in-out theme-thumb"
+  >
+    {/* Active Icon in Thumb */}
+    <svg class="thumb-sun h-3 w-3 text-bg-navy transition-opacity duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+    <svg class="absolute thumb-moon h-3 w-3 text-bg-navy transition-opacity duration-300" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+  </span>
+</button>
+
+<style is:global>
+  /* Dark Mode (Default) - Thumb on Right */
+  .theme-toggle {
+    background-color: #000 !important;
+  }
+  .theme-thumb {
+    transform: translateX(2rem); /* Adjusted for w-14 */
+  }
+  .thumb-sun { opacity: 1; }
+  .thumb-moon { opacity: 0; }
+
+  /* Light Mode - Thumb on Left */
+  .light .theme-toggle {
+    background-color: #cbd5e1 !important; /* Slate 300 */
+  }
+  .light .theme-thumb {
+    transform: translateX(0.25rem); /* Left padding */
+  }
+  .light .thumb-sun { opacity: 0; }
+  .light .thumb-moon { opacity: 1; }
+</style>
+
+<script>
+  function setupThemeToggle() {
+    const buttons = document.querySelectorAll('.theme-toggle');
+    
+    buttons.forEach(button => {
+      button.replaceWith(button.cloneNode(true));
+    });
+
+    const freshButtons = document.querySelectorAll('.theme-toggle');
+    freshButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const isLight = document.documentElement.classList.toggle('light');
+        localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      });
+    });
+  }
+
+  setupThemeToggle();
+  document.addEventListener('astro:after-swap', setupThemeToggle);
+</script>

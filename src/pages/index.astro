@@ -1,11 +1,210 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Experience from "../components/Experience.astro";
+import Projects from "../components/Projects.astro";
 ---
 
 <Layout>
-	<Welcome />
+	<Header />
+
+	<main id="content" class="pt-24 lg:w-1/2 lg:py-24">
+		<section
+			id="about"
+			class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+			aria-label="Sobre mim"
+		>
+			<div
+				class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-bg-navy/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0"
+			>
+				<h2
+					class="text-sm font-bold uppercase tracking-widest text-lightest-slate lg:sr-only"
+					data-i18n="nav.about"
+				>
+					Sobre
+				</h2>
+			</div>
+			<div>
+				<p class="mb-4" data-i18n="about.p1">
+					Minha jornada na tecnologia é impulsionada pela busca
+					constante em me tornar um <span
+						class="text-lightest-slate font-medium"
+						>“T-shaped professional”</span
+					>. Com uma base sólida vinda da <a
+						class="font-medium text-lightest-slate hover:text-teal-custom focus-visible:text-teal-custom"
+						href="https://www.unb.br/"
+						target="_blank"
+						rel="noreferrer">UnB</a
+					> (Engenharia de Redes) e especialização em Desenvolvimento Fullstack
+					pela <a
+						class="font-medium text-lightest-slate hover:text-teal-custom focus-visible:text-teal-custom"
+						href="https://www.xpeducacao.com.br/"
+						target="_blank"
+						rel="noreferrer">XP Educação</a
+					>, foco em dominar minha especialidade técnica enquanto
+					amplio minha visão em <span
+						class="text-lightest-slate font-medium">UI/UX</span
+					>, <span class="text-lightest-slate font-medium"
+						>Product Design</span
+					> e <span class="text-lightest-slate font-medium"
+						>Metodologias de Testes</span
+					>.
+				</p>
+				<p class="mb-4" data-i18n="about.p2">
+					Ao longo da minha carreira, tive o privilégio de construir
+					soluções para instituições de peso como o <a
+						class="font-medium text-lightest-slate hover:text-teal-custom focus-visible:text-teal-custom"
+						href="https://www.brb.com.br/"
+						target="_blank"
+						rel="noreferrer">Banco de Brasília (BRB)</a
+					>, o <a
+						class="font-medium text-lightest-slate hover:text-teal-custom focus-visible:text-teal-custom"
+						href="https://www.gov.br/ibict/pt-br"
+						target="_blank"
+						rel="noreferrer">IBICT</a
+					>, o <a
+						class="font-medium text-lightest-slate hover:text-teal-custom focus-visible:text-teal-custom"
+						href="https://www.bb.com.br/"
+						target="_blank"
+						rel="noreferrer">Banco do Brasil</a
+					> e a <a
+						class="font-medium text-lightest-slate hover:text-teal-custom focus-visible:text-teal-custom"
+						href="https://www.telebras.com.br/"
+						target="_blank"
+						rel="noreferrer">Telebrás</a
+					>.
+				</p>
+				<p data-i18n="about.p3">
+					Hoje, utilizo essa bagagem para integrar tecnologias de
+					ponta, desde o monitoramento de infraestruturas <span
+						class="text-lightest-slate font-medium"
+						>Mainframe (ZOs)</span
+					> até a criação de interfaces modernas com <span
+						class="text-lightest-slate font-medium">React</span
+					> e <span class="text-lightest-slate font-medium"
+						>Next.js</span
+					>.
+				</p>
+			</div>
+		</section>
+
+		<Experience />
+
+		<section
+			id="education"
+			class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+			aria-label="Educação e Formação"
+		>
+			<div
+				class="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-bg-navy/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0"
+			>
+				<h2
+					class="text-sm font-bold uppercase tracking-widest text-lightest-slate lg:sr-only"
+					data-i18n="nav.education"
+				>
+					Educação
+				</h2>
+			</div>
+
+			<div class="space-y-12">
+				{/* Formação Acadêmica */}
+				<div
+					class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100"
+				>
+					<div
+						class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-custom sm:col-span-2"
+					>
+						2021 — 2023
+					</div>
+					<div class="z-10 sm:col-span-6">
+						<h3
+							class="font-medium leading-snug text-lightest-slate"
+						>
+							<span data-i18n="edu.pos.title"
+								>Pós Graduação — Desenvolvimento Fullstack</span
+							>
+						</h3>
+						<p class="text-sm text-slate-custom">XP Educação</p>
+					</div>
+				</div>
+
+				<div
+					class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100"
+				>
+					<div
+						class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-custom sm:col-span-2"
+					>
+						2015 - 2020
+					</div>
+					<div class="z-10 sm:col-span-6">
+						<h3
+							class="font-medium leading-snug text-lightest-slate"
+						>
+							<span data-i18n="edu.grad.title"
+								>Graduação — Engenharia de Redes</span
+							>
+						</h3>
+						<p class="text-sm text-slate-custom">
+							UnB — Universidade de Brasília
+						</p>
+					</div>
+				</div>
+
+				{/* Bootcamps & Cursos */}
+				<div
+					class="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100"
+				>
+					<div
+						class="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-slate-custom sm:col-span-2"
+						data-i18n="edu.special"
+					>
+						Especializações
+					</div>
+					<div class="z-10 sm:col-span-6">
+						<h3
+							class="font-medium leading-snug text-lightest-slate mb-2"
+						>
+							<span data-i18n="edu.bootcamp.title"
+								>Bootcamps & Cursos Complementares</span
+							>
+							<ul class="space-y-2 text-sm text-slate-custom">
+								<li class="flex items-start">
+									<span class="mr-2 text-teal-custom">▹</span>
+									<span
+										>Bootcamp Desenvolvimento Fullstack —
+										IGTI / XP Educação</span
+									>
+								</li>
+								<li class="flex items-start">
+									<span class="mr-2 text-teal-custom">▹</span>
+									<span
+										>Formação Full Stack Avançada (React,
+										Next.js, Node.js)</span
+									>
+								</li>
+								<li class="flex items-start">
+									<span class="mr-2 text-teal-custom">▹</span>
+									<span
+										>Estudos focados em UI/UX Design e
+										Product Development</span
+									>
+								</li>
+							</ul>
+						</h3>
+					</div>
+				</div>
+			</div>
+
+			<Projects />
+
+			<footer class="max-w-md pb-16 text-sm text-slate-custom sm:pb-0">
+				<p data-i18n="footer.text">
+					Projetado e desenvolvido por <span
+						class="text-lightest-slate font-medium"
+						>Matheus Ferreira</span
+					>. Construído com Astro e Tailwind CSS.
+				</p>
+			</footer>
+		</section>
+	</main>
 </Layout>
