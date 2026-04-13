@@ -1,0 +1,104 @@
+---
+
+---
+
+<section
+  id="whatsapp"
+  class="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+  aria-label="Contato via WhatsApp"
+>
+  <div
+    class="whatsapp-card group relative overflow-hidden rounded-2xl bg-teal-custom/5 p-8 md:p-12 border border-teal-custom/10 transition-all duration-500 hover:-translate-y-2 hover:bg-teal-custom/10 hover:border-teal-custom/40 hover:shadow-[0_20px_40px_rgba(100,255,218,0.1)]"
+  >
+    <!-- Soft Ambient Glow -->
+    <div
+      class="absolute inset-0 -z-10 bg-gradient-to-br from-teal-custom/0 via-teal-custom/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+    >
+    </div>
+
+    <div class="relative z-10 flex flex-col items-center text-center space-y-8">
+      <h2
+        class="text-3xl font-bold tracking-tight text-lightest-slate sm:text-4xl md:text-5xl lg:leading-tight"
+        data-i18n="whatsapp.title"
+      >
+        Já que chegou até aqui, me chame no WhatsApp!
+      </h2>
+
+      <p class="text-slate-custom max-w-lg text-lg leading-relaxed">
+        Estou disponível para novos projetos, colaborações ou apenas um café
+        virtual. Vamos transformar suas ideias em realidade!
+      </p>
+
+      <a
+        href="https://wa.me/556182501719"
+        target="_blank"
+        rel="noreferrer"
+        class="whatsapp-button relative inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-[#25D366] to-[#128C7E] px-8 py-4 text-lg font-bold text-white transition-all duration-300 hover:scale-110 hover:shadow-[0_0_30px_rgba(37,211,102,0.5)] active:scale-95 group/btn"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          class="h-6 w-6 transition-transform group-hover/btn:rotate-12"
+          aria-hidden="true"
+        >
+          <path
+            d="M19.11 4.93A9.91 9.91 0 0 0 12.03 2C6.49 2 2 6.49 2 12c0 1.93.51 3.8 1.48 5.44L2 22l4.7-1.46A9.93 9.93 0 0 0 12.03 22c5.54 0 10.03-4.49 10.03-10 0-2.68-1.04-5.2-2.95-7.07zM12.03 20.13c-1.64 0-3.25-.43-4.66-1.25l-.33-.2-2.79.87.91-2.72-.21-.35A8.1 8.1 0 0 1 3.9 12c0-4.48 3.65-8.13 8.13-8.13 2.17 0 4.2.84 5.73 2.38a8.05 8.05 0 0 1 2.4 5.75c0 4.48-3.65 8.13-8.13 8.13zm4.53-6.07c-.25-.13-1.47-.72-1.7-.8-.23-.09-.4-.13-.57.13-.17.25-.66.8-.81.96-.15.17-.3.19-.55.06-.25-.13-1.05-.39-2-1.24-.74-.66-1.24-1.47-1.39-1.72-.15-.25-.02-.38.11-.51.11-.11.25-.3.38-.45.13-.15.17-.25.25-.42.08-.17.04-.32-.02-.45-.06-.13-.57-1.38-.78-1.89-.2-.48-.41-.41-.57-.42l-.48-.01c-.17 0-.45.06-.68.32-.23.25-.9.88-.9 2.14 0 1.26.92 2.47 1.05 2.64.13.17 1.81 2.77 4.39 3.88.61.26 1.09.42 1.46.54.61.19 1.17.16 1.61.1.49-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.29z"
+          ></path>
+        </svg>
+        <span data-i18n="whatsapp.button">Conversar no WhatsApp</span>
+
+        <!-- Pulse Effect Layers -->
+        <span
+          class="absolute inset-0 rounded-full bg-[#25D366] opacity-20 animate-ping"
+        ></span>
+      </a>
+    </div>
+
+    <!-- Background Decoration -->
+    <div
+      class="absolute -right-20 -bottom-20 -z-10 h-64 w-64 rounded-full bg-teal-custom/10 blur-[100px] transition-transform duration-700 group-hover:scale-150"
+    >
+    </div>
+    <div
+      class="absolute -left-20 -top-20 -z-10 h-64 w-64 rounded-full bg-blue-600/10 blur-[100px] transition-transform duration-700 group-hover:scale-150"
+    >
+    </div>
+  </div>
+</section>
+
+<style>
+  :root {
+    --color-teal-custom: #64ffda; /* Base color fallback */
+  }
+
+  .whatsapp-card {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .whatsapp-button {
+    box-shadow: 0 10px 20px -5px rgba(37, 211, 102, 0.3);
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
+
+<script>
+  import { animate, inView } from "motion";
+
+  inView("#whatsapp", (element) => {
+    animate(
+      element,
+      { opacity: [0, 1], y: [50, 0] },
+      { duration: 3, ease: "easeOut" },
+    );
+  });
+</script>

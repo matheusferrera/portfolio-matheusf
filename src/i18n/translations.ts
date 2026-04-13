@@ -6,7 +6,7 @@ export const translations = {
     "nav.education": "Educação",
     "nav.stacks": "Stacks",
     "header.role": "Desenvolvedor Full-stack",
-    "header.tagline": "Eu construo experiências digitais acessíveis e inclusivas e produtos para a web.",
+    "header.tagline": "Desenvolvo experiências digitais acessíveis e produtos inclusivos para a web.",
     
     // About
     "about.p1": "Minha jornada na tecnologia é impulsionada pela busca constante em me tornar um <span class='text-lightest-slate font-medium'>“T-shaped professional”</span>. Com uma base sólida vinda da <a class='font-medium text-lightest-slate hover:text-teal-custom' href='https://www.unb.br/' target='_blank'>UnB</a> (Engenharia de Redes) e especialização em Desenvolvimento Fullstack pela <a class='font-medium text-lightest-slate hover:text-teal-custom' href='https://www.xpeducacao.com.br/' target='_blank'>XP Educação</a>, foco em dominar minha especialidade técnica enquanto amplio minha visão em <span class='text-lightest-slate font-medium'>UI/UX</span>, <span class='text-lightest-slate font-medium'>Product Design</span> e <span class='text-lightest-slate font-medium'>Metodologias de Testes</span>.",
@@ -19,7 +19,7 @@ export const translations = {
     "exp.1.title": "Pesquisador Federal",
     "exp.1.desc": "Atuação em projetos como desenvolvedor front-end, incluindo os projetos Progredir e SESAI, focando na criação de interfaces modernas e eficientes.",
     "exp.2.title": "Desenvolvedor Full-stack Pleno",
-    "exp.2.desc": "Desenvolvimento full-stack para crédito rural. Responsável pelo front-end, serviços back-end, configuração de rotas e implementação de testes unitários.",
+    "exp.2.desc": "Desenvolvimento full-stack para crédito rural. Responsable pelo front-end, serviços back-end, configuração de rotas e implementação de testes unitários.",
     "exp.3.title": "Estagiário",
     "exp.3.desc": "Desenvolvimento de aplicações para suporte às demandas internas e implementações na intranet da Telebrás.",
     "exp.4.title": "Desenvolvedor Front-end Júnior",
@@ -37,8 +37,13 @@ export const translations = {
     "stacks.db": "Banco de Dados",
     "stacks.infra": "Infra & Ferramentas",
     
+    // WhatsApp Section
+    "whatsapp.title": "Já que chegou até aqui, me chame no WhatsApp!",
+    "whatsapp.button": "Conversar no WhatsApp",
+    
     // Footer
-    "footer.text": "Projetado e desenvolvido por <span class='text-lightest-slate font-medium'>Matheus Ferreira</span>. Construído com Astro e Tailwind CSS."
+    "footer.text": "Projetado e desenvolvido por <span class='text-lightest-slate font-medium'>Matheus Ferreira</span>. Construído com Astro e Tailwind CSS.",
+    "header.cv": "Currículo Lattes"
   },
   en: {
     // Header
@@ -77,9 +82,14 @@ export const translations = {
     "stacks.title": "Stacks",
     "stacks.db": "Database",
     "stacks.infra": "Infra & Tools",
+
+    // WhatsApp Section
+    "whatsapp.title": "Since you've made it this far, call me on WhatsApp!",
+    "whatsapp.button": "Chat on WhatsApp",
     
     // Footer
-    "footer.text": "Designed and developed by <span class='text-lightest-slate font-medium'>Matheus Ferreira</span>. Built with Astro and Tailwind CSS."
+    "footer.text": "Designed and developed by <span class='text-lightest-slate font-medium'>Matheus Ferreira</span>. Built with Astro and Tailwind CSS.",
+    "header.cv": "Resumé / CV"
   },
   es: {
     // Header
@@ -118,8 +128,13 @@ export const translations = {
     "stacks.title": "Stacks",
     "stacks.db": "Base de Datos",
     "stacks.infra": "Infra & Herramientas",
+
+    // WhatsApp Section
+    "whatsapp.title": "¡Ya que has llegado hasta aquí, llámame por WhatsApp!",
+    "whatsapp.button": "Chatear en WhatsApp",
     
     // Footer
-    "footer.text": "Diseñado y desarrollado por <span class='text-lightest-slate font-medium'>Matheus Ferreira</span>. Construido con Astro y Tailwind CSS."
+    "footer.text": "Diseñado y desarrollado por <span class='text-lightest-slate font-medium'>Matheus Ferreira</span>. Construido con Astro e Tailwind CSS.",
+    "header.cv": "Curriculo Lattes"
   }
 };
