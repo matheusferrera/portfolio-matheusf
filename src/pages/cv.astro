@@ -1,0 +1,750 @@
+---
+/**
+ * Currículo / Resume — PDF-ready page
+ * Access at /cv and use Ctrl+P (or Cmd+P) to generate perfect PDF
+ */
+
+const experiences = [
+  {
+    date: "ABR 2024 — PRESENTE",
+    title: "Analista Sênior",
+    company: "Banco de Brasília (BRB)",
+    url: "https://www.brb.com.br/",
+    description:
+      "Atuação na parte de produção, controlando o mainframe. Desenvolvi um portal de produção que monitora toda a estrutura mainframe (ZOs) e envia alertas automáticos via Teams, utilizando meus conhecimentos de full-stack.",
+    tech: ["React", "Postgres SQL", "ZOs", "IWS", "APIs"],
+  },
+  {
+    date: "AGO 2025 — PRESENTE",
+    title: "Pesquisador Federal",
+    company: "IBICT / COTEC",
+    url: "https://www.gov.br/ibict/pt-br",
+    description:
+      "Atuação em projetos como desenvolvedor front-end, incluindo os projetos Progredir e SESAI, focando na criação de interfaces modernas e eficientes.",
+    tech: ["React", "Next.js", "Angular", "Figma"],
+  },
+  {
+    date: "MAR 2022 — ABR 2024",
+    title: "Desenvolvedor Full-stack Pleno",
+    company: "Banco do Brasil (Stefanini)",
+    url: "https://www.bb.com.br/",
+    description:
+      "Desenvolvimento full-stack baseado na demanda interna da gerência responsável pelo crédito rural. Fui responsável pelo desenvolvimento do front-end, criação de serviços e operações no back-end, configuração de rotas e implementação de testes unitários.",
+    tech: ["AngularJS", "Oracle DB", "Java", "Spring boot"],
+  },
+  {
+    date: "MAR 2017 — MAR 2019",
+    title: "Estagiário",
+    company: "TELEBRÁS",
+    url: "https://www.telebras.com.br/",
+    description:
+      "Desenvolvimento de aplicações individuais para suporte às demandas internas da gerência e implementações na intranet da Telebrás.",
+    tech: ["HTML", "CSS", "PHP", "MySQL", "Bootstrap"],
+  },
+  {
+    date: "JUN 2016 — MAR 2019",
+    title: "Desenvolvedor Front-end Júnior",
+    company: "UIoT (PIBIC)",
+    url: "#",
+    description:
+      "Participação no projeto de iniciação científica (PIBIC), consolidando a base de desenvolvimento front-end e introdução a frameworks modernos.",
+    tech: ["Foundation", "Bootstrap", "CSS", "HTML", "JavaScript"],
+  },
+];
+
+const stackCategories = [
+  {
+    title: "Frontend",
+    tech: [
+      "React", "Next.js", "Vue.js", "Svelte", "Angular", "AngularJS",
+      "JavaScript", "TypeScript", "HTML", "CSS", "Tailwind CSS", "Bootstrap", "Figma",
+    ],
+  },
+  {
+    title: "Backend",
+    tech: [
+      "Node.js", "Express", "NestJS", "Fastify", "Java",
+      "Spring Boot", "PHP", "APIs (REST/GraphQL)",
+    ],
+  },
+  {
+    title: "Banco de Dados",
+    tech: ["Postgres SQL", "MySQL", "MongoDB", "Firebase", "Oracle DB"],
+  },
+  {
+    title: "Infra & Ferramentas",
+    tech: [
+      "AWS (S3, EC2)", "GCP", "Azure", "Docker", "Kubernetes",
+      "Vercel", "Git", "ZOs (Mainframe)", "IWS", "Teams Integration",
+    ],
+  },
+];
+---
+
+<!doctype html>
+<html lang="pt">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Matheus Ferreira — Currículo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ===== DESIGN TOKENS — mirrors the portfolio ===== */
+      :root {
+        --bg-navy: #0a192f;
+        --bg-navy-light: #112240;
+        --bg-navy-lightest: #233554;
+        --slate: #8892b0;
+        --light-slate: #a8b2d1;
+        --lightest-slate: #ccd6f6;
+        --white-custom: #e6f1ff;
+        --teal: #64ffda;
+        --teal-dim: rgba(100, 255, 218, 0.1);
+        --teal-border: rgba(100, 255, 218, 0.25);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+      }
+
+      body {
+        font-family: "Inter", -apple-system, system-ui, sans-serif;
+        background: var(--bg-navy);
+        color: var(--slate);
+        line-height: 1.6;
+        font-size: 11px;
+        min-height: 100vh;
+      }
+
+      /* ===== PAGE LAYOUT ===== */
+      .cv-page {
+        max-width: 210mm;
+        margin: 0 auto;
+        padding: 40px 48px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      /* Decorative side accent */
+      .cv-page::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background: linear-gradient(180deg, var(--teal) 0%, rgba(100, 255, 218, 0.1) 100%);
+      }
+
+      /* Decorative corner */
+      .cv-page::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle at 100% 0%, rgba(100, 255, 218, 0.06) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      /* ===== HEADER ===== */
+      .cv-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 28px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid var(--bg-navy-lightest);
+        position: relative;
+      }
+
+      .cv-header::after {
+        content: "";
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 80px;
+        height: 2px;
+        background: var(--teal);
+      }
+
+      .cv-name {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--lightest-slate);
+        letter-spacing: -0.5px;
+        line-height: 1.1;
+      }
+
+      .cv-role {
+        font-size: 15px;
+        font-weight: 500;
+        color: var(--teal);
+        margin-top: 4px;
+        letter-spacing: 0.5px;
+      }
+
+      .cv-tagline {
+        font-size: 11px;
+        color: var(--slate);
+        margin-top: 6px;
+        max-width: 300px;
+      }
+
+      .cv-contacts {
+        text-align: right;
+        font-size: 10px;
+        color: var(--light-slate);
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .cv-contacts a {
+        color: var(--light-slate);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+
+      .cv-contacts a:hover {
+        color: var(--teal);
+      }
+
+      .cv-contact-item {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 6px;
+      }
+
+      .cv-contact-icon {
+        width: 12px;
+        height: 12px;
+        fill: var(--teal);
+        flex-shrink: 0;
+      }
+
+      /* ===== TWO COLUMN LAYOUT ===== */
+      .cv-body {
+        display: grid;
+        grid-template-columns: 1fr 220px;
+        gap: 32px;
+      }
+
+      /* ===== SECTION TITLES ===== */
+      .section-title {
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2.5px;
+        color: var(--teal);
+        margin-bottom: 16px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .section-title::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(90deg, var(--bg-navy-lightest) 0%, transparent 100%);
+      }
+
+      /* ===== ABOUT ===== */
+      .about-text {
+        font-size: 10.5px;
+        line-height: 1.7;
+        color: var(--slate);
+        margin-bottom: 24px;
+      }
+
+      .about-text strong {
+        color: var(--lightest-slate);
+        font-weight: 500;
+      }
+
+      /* ===== EXPERIENCE ===== */
+      .exp-item {
+        margin-bottom: 18px;
+        padding-left: 14px;
+        border-left: 2px solid var(--bg-navy-lightest);
+        position: relative;
+        transition: border-color 0.3s;
+      }
+
+      .exp-item:hover {
+        border-left-color: var(--teal);
+      }
+
+      .exp-item::before {
+        content: "";
+        position: absolute;
+        left: -5px;
+        top: 6px;
+        width: 8px;
+        height: 8px;
+        background: var(--bg-navy);
+        border: 2px solid var(--teal);
+        border-radius: 50%;
+      }
+
+      .exp-date {
+        font-size: 9px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--slate);
+        margin-bottom: 2px;
+      }
+
+      .exp-title {
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--lightest-slate);
+        line-height: 1.3;
+      }
+
+      .exp-company {
+        color: var(--teal);
+        font-weight: 500;
+      }
+
+      .exp-desc {
+        font-size: 10px;
+        line-height: 1.6;
+        color: var(--slate);
+        margin-top: 4px;
+      }
+
+      .exp-tech {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 6px;
+        list-style: none;
+      }
+
+      .exp-tech li {
+        background: var(--teal-dim);
+        color: var(--teal);
+        padding: 2px 8px;
+        border-radius: 9999px;
+        font-size: 8.5px;
+        font-weight: 500;
+        letter-spacing: 0.3px;
+      }
+
+      /* ===== SIDEBAR ===== */
+      .sidebar-section {
+        margin-bottom: 24px;
+      }
+
+      /* ===== EDUCATION ===== */
+      .edu-item {
+        margin-bottom: 14px;
+      }
+
+      .edu-date {
+        font-size: 9px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--slate);
+        margin-bottom: 2px;
+      }
+
+      .edu-title {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--lightest-slate);
+        line-height: 1.3;
+      }
+
+      .edu-school {
+        font-size: 10px;
+        color: var(--slate);
+      }
+
+      /* ===== SPECIALIZATIONS ===== */
+      .spec-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .spec-list li {
+        font-size: 10px;
+        color: var(--slate);
+        padding: 3px 0;
+        display: flex;
+        align-items: flex-start;
+        gap: 6px;
+      }
+
+      .spec-list li::before {
+        content: "▹";
+        color: var(--teal);
+        font-size: 10px;
+        line-height: 1.6;
+        flex-shrink: 0;
+      }
+
+      /* ===== STACKS ===== */
+      .stack-category {
+        margin-bottom: 10px;
+      }
+
+      .stack-label {
+        font-size: 9.5px;
+        font-weight: 600;
+        color: var(--lightest-slate);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 5px;
+      }
+
+      .stack-pills {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 3px;
+        list-style: none;
+      }
+
+      .stack-pills li {
+        background: var(--teal-dim);
+        color: var(--teal);
+        padding: 2px 7px;
+        border-radius: 9999px;
+        font-size: 8px;
+        font-weight: 500;
+        letter-spacing: 0.2px;
+      }
+
+      /* ===== FOOTER ===== */
+      .cv-footer {
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 1px solid var(--bg-navy-lightest);
+        font-size: 9px;
+        color: var(--slate);
+        text-align: center;
+        opacity: 0.7;
+      }
+
+      /* ===== PRINT BUTTON ===== */
+      .print-btn {
+        position: fixed;
+        bottom: 24px;
+        right: 24px;
+        background: linear-gradient(135deg, var(--teal) 0%, #4fd1c5 100%);
+        color: var(--bg-navy);
+        border: none;
+        padding: 14px 28px;
+        border-radius: 12px;
+        font-family: "Inter", sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow:
+          0 8px 32px rgba(100, 255, 218, 0.3),
+          0 0 0 1px rgba(100, 255, 218, 0.2);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 100;
+        letter-spacing: 0.5px;
+      }
+
+      .print-btn:hover {
+        transform: translateY(-2px);
+        box-shadow:
+          0 12px 40px rgba(100, 255, 218, 0.4),
+          0 0 0 1px rgba(100, 255, 218, 0.3);
+      }
+
+      .print-btn:active {
+        transform: translateY(0);
+      }
+
+      .print-btn svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      /* Back to portfolio link */
+      .back-link {
+        position: fixed;
+        top: 24px;
+        left: 24px;
+        color: var(--slate);
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        background: var(--bg-navy-light);
+        border: 1px solid var(--bg-navy-lightest);
+        border-radius: 8px;
+        transition: all 0.3s;
+        z-index: 100;
+      }
+
+      .back-link:hover {
+        color: var(--teal);
+        border-color: var(--teal);
+      }
+
+      /* ===== PRINT STYLES ===== */
+      @media print {
+        @page {
+          size: A4;
+          margin: 0;
+        }
+
+        html, body {
+          background: var(--bg-navy) !important;
+          -webkit-print-color-adjust: exact !important;
+          print-color-adjust: exact !important;
+          margin: 0 !important;
+          padding: 0 !important;
+          width: 100% !important;
+          min-height: 100% !important;
+        }
+
+        /* Force background to bleed to edges */
+        html {
+          background-color: var(--bg-navy) !important;
+        }
+
+        body {
+          background-color: var(--bg-navy) !important;
+          box-shadow: inset 0 0 0 1000px var(--bg-navy) !important;
+        }
+
+        .cv-page {
+          padding: 32px 40px;
+          max-width: none;
+          margin: 0;
+          min-height: 100vh;
+          background: var(--bg-navy) !important;
+        }
+
+        .print-btn,
+        .back-link {
+          display: none !important;
+        }
+
+        .exp-item:hover {
+          border-left-color: var(--bg-navy-lightest);
+        }
+      }
+
+      /* ===== SCREEN-ONLY ANIMATIONS ===== */
+      @media screen {
+        .cv-page {
+          animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .exp-item {
+          animation: slideIn 0.4s ease-out backwards;
+        }
+
+        @keyframes slideIn {
+          from {
+            opacity: 0;
+            transform: translateX(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+
+        .exp-item:nth-child(1) { animation-delay: 0.1s; }
+        .exp-item:nth-child(2) { animation-delay: 0.2s; }
+        .exp-item:nth-child(3) { animation-delay: 0.3s; }
+        .exp-item:nth-child(4) { animation-delay: 0.4s; }
+        .exp-item:nth-child(5) { animation-delay: 0.5s; }
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/" class="back-link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" width="14" height="14">
+        <path fill-rule="evenodd" d="M17 10a.75.75 0 01-.75.75H5.612l4.158 3.96a.75.75 0 11-1.04 1.08l-5.5-5.25a.75.75 0 010-1.08l5.5-5.25a.75.75 0 111.04 1.08L5.612 9.25H16.25A.75.75 0 0117 10z" clip-rule="evenodd" />
+      </svg>
+      Voltar ao Portfólio
+    </a>
+
+    <div class="cv-page">
+      <!-- HEADER -->
+      <header class="cv-header">
+        <div>
+          <h1 class="cv-name">Matheus Ferreira</h1>
+          <p class="cv-role">Desenvolvedor Full-stack</p>
+          <p class="cv-tagline">
+            Eu construo experiências digitais acessíveis e inclusivas e produtos para a web.
+          </p>
+        </div>
+        <div class="cv-contacts">
+          <div class="cv-contact-item">
+            <a href="https://github.com/matheusferrera" target="_blank" rel="noreferrer">
+              github.com/matheusferrera
+            </a>
+            <svg class="cv-contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12" />
+            </svg>
+          </div>
+          <div class="cv-contact-item">
+            <a href="https://wa.me/556182501719" target="_blank" rel="noreferrer">
+              +55 (61) 98250-1719
+            </a>
+            <svg class="cv-contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.272-.099-.47-.148-.669.15-.198.297-.768.967-.941 1.165-.173.198-.347.223-.645.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" />
+            </svg>
+          </div>
+          <div class="cv-contact-item">
+            <a href="https://instagram.com/matheus.ferris" target="_blank" rel="noreferrer">
+              @matheus.ferris
+            </a>
+            <svg class="cv-contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm4.846-10.427c0 .795.645 1.44 1.44 1.44s1.44-.645 1.44-1.44-.645-1.44-1.44-1.44-1.44.645-1.44 1.44z" />
+            </svg>
+          </div>
+          <div class="cv-contact-item">
+            <a href="http://lattes.cnpq.br/5806390345134173" target="_blank" rel="noreferrer">
+              Currículo Lattes
+            </a>
+            <svg class="cv-contact-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M5.22 14.78a.75.75 0 001.06 0l7.22-7.22v5.69a.75.75 0 001.5 0v-7.5a.75.75 0 00-.75-.75h-7.5a.75.75 0 000 1.5h5.69l-7.22 7.22a.75.75 0 000 1.06z" clip-rule="evenodd" />
+            </svg>
+          </div>
+        </div>
+      </header>
+
+      <!-- BODY -->
+      <div class="cv-body">
+        <!-- MAIN COLUMN -->
+        <div class="cv-main">
+          <!-- ABOUT -->
+          <section>
+            <h2 class="section-title">Sobre</h2>
+            <p class="about-text">
+              Minha jornada na tecnologia é impulsionada pela busca constante em me tornar um
+              <strong>"T-shaped professional"</strong>. Com uma base sólida vinda da
+              <strong>UnB</strong> (Engenharia de Redes) e especialização em Desenvolvimento Fullstack
+              pela <strong>XP Educação</strong>, foco em dominar minha especialidade técnica enquanto
+              amplio minha visão em <strong>UI/UX</strong>, <strong>Product Design</strong> e
+              <strong>Metodologias de Testes</strong>. Ao longo da minha carreira, tive o privilégio
+              de construir soluções para instituições de peso como o <strong>BRB</strong>, o
+              <strong>IBICT</strong>, o <strong>Banco do Brasil</strong> e a <strong>TELEBRÁS</strong>.
+            </p>
+          </section>
+
+          <!-- EXPERIENCE -->
+          <section>
+            <h2 class="section-title">Experiência</h2>
+            {experiences.map((exp) => (
+              <div class="exp-item">
+                <p class="exp-date">{exp.date}</p>
+                <h3 class="exp-title">
+                  {exp.title} · <span class="exp-company">{exp.company}</span>
+                </h3>
+                <p class="exp-desc">{exp.description}</p>
+                <ul class="exp-tech">
+                  {exp.tech.map((t) => (
+                    <li>{t}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </section>
+        </div>
+
+        <!-- SIDEBAR -->
+        <aside>
+          <!-- EDUCATION -->
+          <div class="sidebar-section">
+            <h2 class="section-title">Educação</h2>
+
+            <div class="edu-item">
+              <p class="edu-date">2021 — 2023</p>
+              <h3 class="edu-title">Pós Graduação — Desenvolvimento Fullstack</h3>
+              <p class="edu-school">XP Educação</p>
+            </div>
+
+            <div class="edu-item">
+              <p class="edu-date">2015 — 2020</p>
+              <h3 class="edu-title">Graduação — Engenharia de Redes</h3>
+              <p class="edu-school">UnB — Universidade de Brasília</p>
+            </div>
+          </div>
+
+          <!-- SPECIALIZATIONS -->
+          <div class="sidebar-section">
+            <h2 class="section-title">Especializações</h2>
+            <ul class="spec-list">
+              <li>Bootcamp Desenvolvimento Fullstack — IGTI / XP Educação</li>
+              <li>Formação Full Stack Avançada (React, Next.js, Node.js)</li>
+              <li>Estudos focados em UI/UX Design e Product Development</li>
+            </ul>
+          </div>
+
+          <!-- STACKS -->
+          <div class="sidebar-section">
+            <h2 class="section-title">Stacks</h2>
+            {stackCategories.map((category) => (
+              <div class="stack-category">
+                <p class="stack-label">{category.title}</p>
+                <ul class="stack-pills">
+                  {category.tech.map((t) => (
+                    <li>{t}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </aside>
+      </div>
+
+      <footer class="cv-footer">
+        Projetado e desenvolvido por Matheus Ferreira · Construído com Astro e Tailwind CSS
+      </footer>
+    </div>
+
+    <!-- PRINT BUTTON -->
+    <button class="print-btn" onclick="window.print()">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z" />
+      </svg>
+      Gerar PDF
+    </button>
+  </body>
+</html>
